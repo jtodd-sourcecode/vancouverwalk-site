@@ -52,6 +52,7 @@ map.on('load', () => {
                 // Remove generateId: true
             });
 
+            // In your map.addLayer function, update the line-width:
             map.addLayer({
                 id: 'routes',
                 type: 'line',
@@ -63,11 +64,10 @@ map.on('load', () => {
                 },
                 paint: {
                     'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], '#000000', '#FC4C02'],
-                    'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 6, 4],
+                    'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 11, 11],
                     'line-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0.8]
                 }
             });
-
             let hoveredRouteId = null;
 
             map.on('mousemove', 'routes', (e) => {

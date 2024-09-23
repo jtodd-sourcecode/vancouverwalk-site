@@ -157,4 +157,21 @@ main {
     width: 95%;
     margin: 10% auto;
   }
+
+  .logo a {
+    font-size: 0.9rem; /* Adjust this value as needed */
+  }
+  
+  /* You might want to adjust other header elements for mobile as well */
+  header {
+    padding: 0.3rem 0.8rem;
+  }
+  
+  nav ul li {
+    margin-left: 10px;
+  }
+  
+  nav ul li a {
+    font-size: 0.8rem;
+  }
 }
