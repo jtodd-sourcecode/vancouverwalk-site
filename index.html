@@ -1,1 +1,46 @@
-<h1>Vancouver Walk</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vancouverwalk.com</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/"><i class="fas fa-walking"></i> vancouverwalk.com</a>
+        </div>
+        <div id="route-name"></div>
+        <nav>
+            <ul>
+                <li><a href="#" id="about-link"><i class="fas fa-info-circle"></i> About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main">
+        <div id="map"></div>
+    </main>
+
+    <div id="about-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Metro Vancouver is meant to be explored on foot.</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Back in January 2023, we set out with a simple goal: to experience our city in a new way. Every Sunday, regardless of the weather, we plan a route and get out and walk. These routes take us through a mix of the city’s streets, hidden trails, and scenic views. Each one offers a fresh perspective on Vancouver’s rich and diverse landscape. These walks aren’t just about getting in steps. They’re about reconnecting—with your surroundings, and with the people walking beside you. And yes, we often let our stomachs lead the way—these walks tend to uncover the best places to grab a bite along the journey.</p>
+                <br />
+                <p>Whether you’ve lived here forever or you’re just passing through, these walks show you a side of the city that’s off the beaten path.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
