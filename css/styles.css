@@ -174,4 +174,12 @@ main {
   nav ul li a {
     font-size: 0.8rem;
   }
+
+  .is-mobile {
+    display: block;
+  }
+}
+
+.is-mobile {
+  display: none;
 }

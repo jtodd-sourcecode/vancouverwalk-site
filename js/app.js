@@ -1,4 +1,4 @@
-// Make sure this file is loaded after config.js
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
 // Use the token from config.js
 mapboxgl.accessToken = config.mapboxToken;
@@ -52,7 +52,6 @@ map.on('load', () => {
                 // Remove generateId: true
             });
 
-            // In your map.addLayer function, update the line-width:
             map.addLayer({
                 id: 'routes',
                 type: 'line',
@@ -64,10 +63,19 @@ map.on('load', () => {
                 },
                 paint: {
                     'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], '#000000', '#FC4C02'],
-                    'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 11, 11],
-                    'line-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0.8]
+                    'line-width': [
+                        'interpolate',
+                        ['linear'],
+                        ['zoom'],
+                        10, ['case', ['boolean', ['feature-state', 'hover'], false], 5, 3],
+                        15, ['case', ['boolean', ['feature-state', 'hover'], false], 27, 25],
+                        20, ['case', ['boolean', ['feature-state', 'hover'], false], 47, 45]
+                    ],
+                    'line-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.7, 0.7]
                 }
             });
+
+
             let hoveredRouteId = null;
 
             map.on('mousemove', 'routes', (e) => {
