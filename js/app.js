@@ -1,57 +1,59 @@
-const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-// Use the token from config.js
+// Set the Mapbox access token from the configuration
 mapboxgl.accessToken = config.mapboxToken;
 
+// Initialize the Mapbox map
 const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/outdoors-v12',
-    center: [-122.9805, 49.2488], // Burnaby coordinates
-    zoom: 11 // Adjusted to fit the desired view
+    container: 'map', // HTML element ID for the map
+    style: 'mapbox://styles/mapbox/outdoors-v12', // Map style URL
+    center: [-122.9805, 49.2488], // Initial map center [longitude, latitude]
+    zoom: 11 // Initial zoom level
 });
 
-// Modal functionality
+// Modal elements for the 'About' section
 const modal = document.getElementById('about-modal');
 const aboutLink = document.getElementById('about-link');
-const closeBtn = document.getElementsByClassName('close')[0];
+const closeBtn = document.querySelector('.close');
 
-// Show modal on page load
-window.onload = function() {
+// Display the modal on page load
+window.addEventListener('load', () => {
     modal.style.display = 'block';
-};
+});
 
-// Open modal when About is clicked
-aboutLink.onclick = function() {
+// Show the modal when 'About' link is clicked
+aboutLink.addEventListener('click', () => {
     modal.style.display = 'block';
-};
+});
 
-// Close modal when X is clicked
-closeBtn.onclick = function() {
+// Hide the modal when the close button is clicked
+closeBtn.addEventListener('click', () => {
     modal.style.display = 'none';
-};
+});
 
-// Close modal when clicking outside of it
-window.onclick = function(event) {
+// Hide the modal when clicking outside of it
+window.addEventListener('click', (event) => {
     if (event.target === modal) {
         modal.style.display = 'none';
     }
-};
+});
 
+// Load event for the map
 map.on('load', () => {
+    // Fetch the routes data from the GeoJSON file
     fetch('data/routes.json')
         .then(response => response.json())
         .then(data => {
-            // Assign unique IDs to each feature
+            // Assign unique IDs to each feature for feature state management
             data.features.forEach((feature, index) => {
                 feature.id = index;
             });
 
+            // Add the routes data as a GeoJSON source
             map.addSource('routes', {
                 type: 'geojson',
                 data: data
-                // Remove generateId: true
             });
 
+            // Add a layer to display the routes
             map.addLayer({
                 id: 'routes',
                 type: 'line',
@@ -59,62 +61,104 @@ map.on('load', () => {
                 layout: {
                     'line-join': 'round',
                     'line-cap': 'round',
+                    // Initial z-order for line features
                     'line-sort-key': ['literal', 0]
                 },
                 paint: {
-                    'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], '#000000', '#FC4C02'],
+                    // Change line color on hover
+                    'line-color': [
+                        'case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        '#000000', // Color when hovered
+                        '#FC4C02'  // Default color
+                    ],
+                    // Adjust line width based on zoom level and hover state
                     'line-width': [
                         'interpolate',
                         ['linear'],
                         ['zoom'],
-                        10, ['case', ['boolean', ['feature-state', 'hover'], false], 5, 3],
-                        15, ['case', ['boolean', ['feature-state', 'hover'], false], 27, 25],
-                        20, ['case', ['boolean', ['feature-state', 'hover'], false], 47, 45]
+                        10, [
+                            'case',
+                            ['boolean', ['feature-state', 'hover'], false],
+                            5, 3
+                        ],
+                        15, [
+                            'case',
+                            ['boolean', ['feature-state', 'hover'], false],
+                            27, 25
+                        ],
+                        20, [
+                            'case',
+                            ['boolean', ['feature-state', 'hover'], false],
+                            47, 45
+                        ]
                     ],
-                    'line-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.7, 0.7]
+                    // Set line opacity using a case expression to preserve z-order functionality
+                    'line-opacity': [
+                        'case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        0.7,
+                        0.7
+                    ]
                 }
             });
 
-
             let hoveredRouteId = null;
+            const routeName = document.getElementById('route-name');
 
+            // Event handler for mouse movement over the routes layer
             map.on('mousemove', 'routes', (e) => {
                 if (e.features.length > 0) {
+                    // Remove hover state from the previously hovered feature
                     if (hoveredRouteId !== null) {
-                        map.setFeatureState({ source: 'routes', id: hoveredRouteId }, { hover: false });
+                        map.setFeatureState(
+                            { source: 'routes', id: hoveredRouteId },
+                            { hover: false }
+                        );
                     }
+
+                    // Set hover state on the currently hovered feature
                     hoveredRouteId = e.features[0].id;
-                    map.setFeatureState({ source: 'routes', id: hoveredRouteId }, { hover: true });
+                    map.setFeatureState(
+                        { source: 'routes', id: hoveredRouteId },
+                        { hover: true }
+                    );
 
-                    try {
-                        map.setLayoutProperty('routes', 'line-sort-key', [
-                            'case',
-                            ['==', ['id'], hoveredRouteId],
-                            1,
-                            0
-                        ]);
-                    } catch (error) {
-                        console.error('Error setting layout property:', error);
-                    }
+                    // Bring the hovered route to the top layer
+                    map.setLayoutProperty('routes', 'line-sort-key', [
+                        'case',
+                        ['==', ['id'], hoveredRouteId],
+                        1, // Higher sort key for the hovered route
+                        0  // Default sort key for other routes
+                    ]);
 
+                    // Change the cursor to a pointer
                     map.getCanvas().style.cursor = 'pointer';
-                    const routeName = document.getElementById('route-name');
+
+                    // Display the name of the hovered route
                     routeName.textContent = e.features[0].properties.name;
                 }
             });
 
+            // Event handler for when the mouse leaves the routes layer
             map.on('mouseleave', 'routes', () => {
                 if (hoveredRouteId !== null) {
-                    map.setFeatureState({ source: 'routes', id: hoveredRouteId }, { hover: false });
-                    try {
-                        map.setLayoutProperty('routes', 'line-sort-key', ['literal', 0]);
-                    } catch (error) {
-                        console.error('Error resetting layout property:', error);
-                    }
+                    // Remove hover state from the previously hovered feature
+                    map.setFeatureState(
+                        { source: 'routes', id: hoveredRouteId },
+                        { hover: false }
+                    );
+
+                    // Reset the sort key to default
+                    map.setLayoutProperty('routes', 'line-sort-key', ['literal', 0]);
+
+                    hoveredRouteId = null;
                 }
-                hoveredRouteId = null;
+
+                // Reset the cursor to default
                 map.getCanvas().style.cursor = '';
-                const routeName = document.getElementById('route-name');
+
+                // Clear the route name display
                 routeName.textContent = '';
             });
         })

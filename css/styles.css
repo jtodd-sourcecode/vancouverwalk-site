@@ -1,12 +1,11 @@
-/* Refined CSS for vancouverwalk.com with Strava-inspired orange */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap');
 
 :root {
-  --primary-color: #FC4C02; /* Strava orange */
+  --primary-color: #FC4C02;
   --secondary-color: #f7fff7;
   --text-color: #2c2c2c;
   --bg-color: #ffffff;
-  --accent-color: #000000; /* Changed to black for hover */
+  --accent-color: #000000;
 }
 
 * {
@@ -16,8 +15,7 @@
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
-  line-height: 1.6;
+  font: 400 1em/1.6 'Raleway', sans-serif;
   color: var(--text-color);
   height: 100vh;
   display: flex;
@@ -27,8 +25,7 @@ body {
 
 header {
   position: relative;
-  background-color: var(--primary-color);
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.25'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
+  background: var(--primary-color) url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.25'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
   color: var(--secondary-color);
   padding: 0.5rem 1rem;
   display: flex;
@@ -37,12 +34,9 @@ header {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.logo a {
+.logo a, nav ul li a {
   color: var(--secondary-color);
   text-decoration: none;
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
   transition: color 0.3s ease;
 }
 
@@ -50,8 +44,13 @@ header {
   color: var(--accent-color);
 }
 
+.logo a {
+  font: 700 1.4rem/1 'Raleway', sans-serif;
+  letter-spacing: 0.5px;
+}
+
 nav ul {
-  list-style-type: none;
+  list-style: none;
   display: flex;
 }
 
@@ -60,23 +59,11 @@ nav ul li {
 }
 
 nav ul li a {
-  color: var(--secondary-color);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-nav ul li a:hover {
-  transform: translateY(-2px);
-}
-
-nav ul li a i {
-  margin-right: 4px;
+  font: 600 0.9rem/1 'Raleway', sans-serif;
 }
 
 main {
-  flex-grow: 1;
+  flex: 1;
   position: relative;
 }
 
@@ -86,27 +73,22 @@ main {
 }
 
 #route-name {
-  font-size: 1.2rem;
-  font-weight: 600;
+  font: 600 1.2rem/1 'Raleway', sans-serif;
   color: var(--secondary-color);
   text-align: center;
-  flex-grow: 1;
+  flex: 1;
   margin: 0 20px;
   position: absolute;
   left: 50%;
-  transform: translateX(-55%); /* Shift slightly more to the left */
-  white-space: nowrap; /* Prevent wrapping */
+  transform: translateX(-55%);
+  white-space: nowrap;
 }
 
-/* Modal styles */
 .modal {
   display: none;
   position: fixed;
+  inset: 0;
   z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -117,7 +99,7 @@ main {
   max-width: 600px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .modal-header {
@@ -140,10 +122,8 @@ main {
 
 .close {
   color: white;
-  font-size: 36px;
-  font-weight: bold;
+  font: bold 36px/1 Arial, sans-serif;
   cursor: pointer;
-  line-height: 1;
 }
 
 .close:hover,
@@ -159,10 +139,9 @@ main {
   }
 
   .logo a {
-    font-size: 0.9rem; /* Adjust this value as needed */
+    font-size: 0.9rem;
   }
   
-  /* You might want to adjust other header elements for mobile as well */
   header {
     padding: 0.3rem 0.8rem;
   }
@@ -174,12 +153,4 @@ main {
   nav ul li a {
     font-size: 0.8rem;
   }
-
-  .is-mobile {
-    display: block;
-  }
-}
-
-.is-mobile {
-  display: none;
 }
