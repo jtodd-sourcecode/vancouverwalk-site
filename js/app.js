@@ -25,14 +25,31 @@ aboutLink.addEventListener('click', () => {
 });
 
 // Hide the modal when the close button is clicked
-closeBtn.addEventListener('click', () => {
+closeBtn.addEventListener('click', (event) => {
     modal.style.display = 'none';
+    event.stopPropagation(); // Prevent the click from propagating to the modal body
 });
 
 // Hide the modal when clicking outside of it
 window.addEventListener('click', (event) => {
     if (event.target === modal) {
         modal.style.display = 'none';
+    }
+});
+
+// Get references to the page content divs
+const aboutPage1 = document.getElementById('about-page-1');
+const aboutPage2 = document.getElementById('about-page-2');
+
+// Add event listener to the modal body to toggle pages on click
+const modalBody = document.querySelector('.modal-body');
+modalBody.addEventListener('click', () => {
+    if (aboutPage1.style.display === 'none') {
+        aboutPage1.style.display = 'block';
+        aboutPage2.style.display = 'none';
+    } else {
+        aboutPage1.style.display = 'none';
+        aboutPage2.style.display = 'block';
     }
 });
 

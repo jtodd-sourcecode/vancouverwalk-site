@@ -7,7 +7,9 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" href="favicon.png" sizes="512x512" type="image/png">
+    <link rel="icon" type="image/png" sizes="512x512"  href="favicon.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
     <header>
@@ -33,19 +35,26 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <p>Back in January 2023, we set out with a simple goal: to experience our city in a new way.
-                Every Sunday, regardless of the weather, we plan a route and get out and walk.
-                These routes take us through a mix of the city’s streets, hidden trails, and scenic views.
-                Each one offers a fresh perspective on Vancouver’s rich and diverse landscape.
-                Walks aren’t just about getting in steps.
-                They’re about reconnecting—with your surroundings, and with the people walking beside you.
-                And yes, we often let our stomachs lead the way—we often find incredible places to grab a bite along our journey.</p>
-                <br />
-                <p>Whether you’ve lived here forever or you’re just passing through, these walks show you a side of the city that’s off the beaten path.</p>
+                <!-- Page 1 Content -->
+                <div id="about-page-1">
+                    <p>Back in January 2023, we set out with a simple goal: to experience our city in a new way.
+                    Every Sunday, regardless of the weather, we plan a route and get out and walk.
+                    These routes take us through a mix of the city’s streets, hidden trails, and scenic views.
+                    Each one offers a fresh perspective on Vancouver’s rich and diverse landscape.
+                    Walks aren’t just about getting in steps.
+                    They’re about reconnecting—with your surroundings, and with the people walking beside you.
+                    And yes, we often let our stomachs lead the way—we often find incredible places to grab a bite along our journey.</p>
+                    <br />
+                    <p>Whether you’ve lived here forever or you’re just passing through, these walks show you a side of the city that’s off the beaten path.</p>
+                </div>
+                <!-- Page 2 Content -->
+                <div id="about-page-2" style="display: none;">
+                    <p>Explore more with us! Join our community walks every weekend and discover hidden gems in Vancouver. Stay tuned for upcoming events and routes. We believe in making connections and embracing the journey together.</p>
+                </div>
             </div>
         </div>
     </div>
-
+    
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
     <script src="js/config.js"></script>
     <script src="js/app.js"></script>
