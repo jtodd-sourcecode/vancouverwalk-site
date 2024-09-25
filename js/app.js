@@ -11,7 +11,10 @@ const map = new mapboxgl.Map({
 
 // Modal elements for the 'About' section
 const modal = document.getElementById('about-modal');
+const modalBody = document.querySelector('.modal-body');
 const aboutLink = document.getElementById('about-link');
+const aboutPage1 = document.getElementById('about-page-1');
+const aboutPage2 = document.getElementById('about-page-2');
 const closeBtn = document.querySelector('.close');
 
 // Display the modal on page load
@@ -19,9 +22,17 @@ window.addEventListener('load', () => {
     modal.style.display = 'block';
 });
 
-// Show the modal when 'About' link is clicked
-aboutLink.addEventListener('click', () => {
+// Function to show the first page of the modal
+function showModalFirstPage() {
     modal.style.display = 'block';
+    aboutPage1.style.display = 'block';
+    aboutPage2.style.display = 'none';
+}
+
+// Show the modal when 'About' link is clicked
+aboutLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    showModalFirstPage();
 });
 
 // Hide the modal when the close button is clicked
@@ -37,12 +48,7 @@ window.addEventListener('click', (event) => {
     }
 });
 
-// Get references to the page content divs
-const aboutPage1 = document.getElementById('about-page-1');
-const aboutPage2 = document.getElementById('about-page-2');
-
 // Add event listener to the modal body to toggle pages on click
-const modalBody = document.querySelector('.modal-body');
 modalBody.addEventListener('click', () => {
     if (aboutPage1.style.display === 'none') {
         aboutPage1.style.display = 'block';

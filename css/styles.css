@@ -23,6 +23,10 @@ body {
   background-color: var(--bg-color);
 }
 
+p {
+  margin-bottom: 1em;
+}
+
 header {
   position: relative;
   background: var(--primary-color) url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.25'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
@@ -105,7 +109,7 @@ main {
 .modal-header {
   background-color: var(--primary-color);
   color: white;
-  padding: 8px 12px;
+  padding: 3px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,10 +130,9 @@ main {
   cursor: pointer;
 }
 
-.close:hover,
-.close:focus {
-  color: var(--secondary-color);
-  text-decoration: none;
+#flourish-embed {
+  width: 100%;
+  height: 400px;
 }
 
 @media (max-width: 768px) {
