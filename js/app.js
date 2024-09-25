@@ -17,36 +17,42 @@ const aboutPage1 = document.getElementById('about-page-1');
 const aboutPage2 = document.getElementById('about-page-2');
 const closeBtn = document.querySelector('.close');
 
-// Display the modal on page load
-window.addEventListener('load', () => {
-    modal.style.display = 'block';
-});
-
-// Function to show the first page of the modal
-function showModalFirstPage() {
-    modal.style.display = 'block';
-    aboutPage1.style.display = 'block';
-    aboutPage2.style.display = 'none';
-}
-
 // Show the modal when 'About' link is clicked
 aboutLink.addEventListener('click', (event) => {
     event.preventDefault();
     showModalFirstPage();
 });
 
-// Hide the modal when the close button is clicked
+// Display the modal on page load
+window.addEventListener('load', () => {
+    showModalFirstPage();
+});
+
+// Close modal event handlers
 closeBtn.addEventListener('click', (event) => {
-    modal.style.display = 'none';
+    closeModal();
     event.stopPropagation(); // Prevent the click from propagating to the modal body
 });
 
-// Hide the modal when clicking outside of it
 window.addEventListener('click', (event) => {
     if (event.target === modal) {
-        modal.style.display = 'none';
+        closeModal();
     }
 });
+
+// Function to show the first page of the modal
+function showModalFirstPage() {
+    modal.style.display = 'flex'; // Use flex to center content
+    aboutPage1.style.display = 'block';
+    aboutPage2.style.display = 'none';
+    document.body.classList.add('modal-open');
+}
+
+// Function to close the modal
+function closeModal() {
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+}
 
 // Add event listener to the modal body to toggle pages on click
 modalBody.addEventListener('click', () => {
@@ -116,7 +122,8 @@ map.on('load', () => {
                             47, 45
                         ]
                     ],
-                    // Set line opacity using a case expression to preserve z-order functionality
+                    // Set line opacity using a case expression. THIS IS ABSOLUTELTY REQUIRED to 
+                    // preserve z-order functionality. Do not alter.
                     'line-opacity': [
                         'case',
                         ['boolean', ['feature-state', 'hover'], false],
