@@ -20,60 +20,63 @@ body {
 }
 
 body {
-  font: 400 1em/1.6 "Raleway", sans-serif;
+  font-family: sans-serif;
+  font-size: 1em;
+  line-height: 1.6;
   color: var(--text-color);
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-color);
+  background-color: var(--accent-color);
 }
 
 body.modal-open {
   overflow: hidden;
 }
 
-p {
-  margin-bottom: 1em;
-}
-
-header {
+.header-container {
+  display: flex;
+  align-items: center;
   background: var(--primary-color)
     url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.25'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
   color: var(--secondary-color);
-  padding: 0.5rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 2px 12px;
+}
+
+.logo,
+.about-link {
+  flex-basis: 38%; /* Takes 35% of the header width */
+}
+
+#route-name {
+  flex-basis: 24%; /* Takes 30% of the header width */
+  text-align: center;
+  font-weight: 600;
+  color: var(--secondary-color);
 }
 
 .logo a,
-nav ul li a {
+.about-link a {
+  font-family: "Raleway";
   color: var(--secondary-color);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.logo a:hover,
-nav ul li a:hover {
-  color: var(--accent-color);
-}
-
 .logo a {
-  font: 700 1.4rem/1 "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
   letter-spacing: 0.5px;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
+.about-link {
+  text-align: right; /* Right-aligns the About link within its 30% container */
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
-nav ul li {
-  margin-left: 20px;
-}
-
-nav ul li a {
-  font: 600 0.9rem/1 "Raleway", sans-serif;
+.logo a:hover,
+.about-link a:hover {
+  color: var(--accent-color);
 }
 
 main {
@@ -86,18 +89,6 @@ main {
   height: 100%;
 }
 
-#route-name {
-  font: 600 0.9rem/1 sans-serif;
-  color: var(--secondary-color);
-  text-align: center;
-  flex: 1;
-  margin: 0 20px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-55%);
-  white-space: nowrap;
-}
-
 .modal {
   display: none;
   position: fixed;
@@ -105,9 +96,12 @@ main {
   z-index: 1000;
   background-color: rgba(0, 0, 0, 0.5);
   overflow-y: auto;
-  display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.modal.show {
+  display: flex;
 }
 
 .modal-content {
@@ -123,7 +117,7 @@ main {
 .modal-header {
   background-color: var(--primary-color);
   color: white;
-  padding: 3px 10px;
+  padding: 2px 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -135,9 +129,15 @@ main {
 }
 
 .modal-body {
-  padding: 20px;
+  padding: 12px;
   overflow-y: auto;
-  max-height: calc(90vh - 50px); /* Adjust based on header/footer height */
+  max-height: calc(90vh - 50px);
+  font-family: "Raleway";
+  font-size: 1rem;
+}
+
+.modal-body p {
+  margin-bottom: 0.8em;
 }
 
 .close {
@@ -147,28 +147,42 @@ main {
 }
 
 #flourish-embed {
-  width: 100%;
-  height: 400px;
+  .flourish-embed {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
 }
 
 @media (max-width: 768px) {
-  .modal-content {
-    width: 95%;
+  .header-container {
+    padding: 2px 5px;
   }
 
   .logo a {
     font-size: 0.9rem;
   }
 
-  header {
-    padding: 0.3rem 0.8rem;
-  }
-
-  nav ul li {
-    margin-left: 10px;
-  }
-
-  nav ul li a {
+  .about-link a {
     font-size: 0.8rem;
   }
+
+  #route-name {
+    font-size: 0.8rem;
+  }
+  .modal-body {
+    font-size: 0.8rem;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
 }
+
+/* Debug outlines */
+/*
+* {
+  outline: 1px solid red;
+}
+*/

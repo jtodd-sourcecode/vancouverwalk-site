@@ -1,78 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>vancouverwalk.com - Explore Metro Vancouver on Foot</title>
 
-    <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/png" sizes="512x512"  href="favicon.png">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon.png" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="shortcut icon" href="favicon.ico" />
 
     <!-- SEO meta tags -->
-    <meta name="description" content="Discover Metro Vancouver's hidden gems through curated walking routes.">
-    <meta name="keywords" content="Vancouver, walking routes, urban exploration, hiking, city trails">
-    
+    <meta
+      name="description"
+      content="Discover Metro Vancouver's hidden gems through curated walking routes."
+    />
+    <meta
+      name="keywords"
+      content="Vancouver, walking routes, urban exploration, hiking, city trails"
+    />
+
     <!-- Open Graph / Facebook meta tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vancouverwalk.com/">
-    <meta property="og:title" content="vancouverwalk.com - Explore Metro Vancouver on Foot">
-    <meta property="og:description" content="Discover Metro Vancouver's hidden gems through curated walking routes.">
-    <meta property="og:image" content="https://vancouverwalk.com/og-image.jpg">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vancouverwalk.com/" />
+    <meta
+      property="og:title"
+      content="vancouverwalk.com - Explore Metro Vancouver on Foot"
+    />
+    <meta
+      property="og:description"
+      content="Discover Metro Vancouver's hidden gems through curated walking routes."
+    />
+    <meta
+      property="og:image"
+      content="https://vancouverwalk.com/og-image.jpg"
+    />
 
     <!-- Twitter meta tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://vancouverwalk.com/">
-    <meta name="twitter:title" content="vancouverwalk.com - Explore Metro Vancouver on Foot">
-    <meta name="twitter:description" content="Discover Metro Vancouver's hidden gems through curated walking routes.">
-    <meta name="twitter:image" content="https://vancouverwalk.com/twitter-image.jpg">
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <a href="/"><i class="fas fa-walking"></i> vancouverwalk</a>
-        </div>
-        <div id="route-name"></div>
-        <nav>
-            <ul>
-                <li><a href="#" id="about-link"><i class="fas fa-info-circle"></i> About</a></li>
-            </ul>
-        </nav>
-    </header>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://vancouverwalk.com/" />
+    <meta
+      name="twitter:title"
+      content="vancouverwalk.com - Explore Metro Vancouver on Foot"
+    />
+    <meta
+      name="twitter:description"
+      content="Discover Metro Vancouver's hidden gems through curated walking routes."
+    />
+    <meta
+      name="twitter:image"
+      content="https://vancouverwalk.com/twitter-image.jpg"
+    />
+  </head>
+  <body>
+    <div class="header-container">
+      <div class="logo">
+        <a href="/"><i class="fas fa-walking"></i> vancouverwalk</a>
+      </div>
+      <div id="route-name"></div>
+      <div class="about-link">
+        <a href="#" id="about-link"><i class="fas fa-info-circle"></i> About</a>
+      </div>
+    </div>
 
     <main role="main">
-        <div id="map"></div>
+      <div id="map"></div>
     </main>
 
     <div id="about-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Exploring our city. On foot.</h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <!-- Page 1 Content -->
-                <div id="about-page-1">
-                    <p>In January 2023, we set out to experience Vancouver in a new way. Every Sunday, rain or shine, we'd plan and walk a ~12km route, weaving through neighborhoods, streets, and trails.</p>
-                    <p>It's almost been two years and we're still at it! Why? Because we love getting outside and having long conversations while stumbling upon local gems like eateries, scenic spots, and farmers markets.</p>                   
-                    <p>Check out our journey, and maybe find inspiration to explore your own surroundings. Whether you’re a longtime resident or a visitor, these walks reveal a side of the city that’s off the beaten path!</p>
-                    <p>Click on this card to reveal some stats.</b></p>
-                </div>
-                <!-- Page 2 Content -->
-                <div id="about-page-2" style="display: none;">
-                    <div class="flourish-embed" data-src="story/2625322" />
-                </div>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Exploring our city. On foot.</h2>
+          <span class="close">&times;</span>
         </div>
+        <div class="modal-body">
+          <!-- Page 1 Content -->
+          <div id="about-page-1">
+            <p>
+              In January 2023, we set out to experience Vancouver in a new way.
+              Every Sunday, rain or shine, we'd plan and walk a ~12km route,
+              weaving through neighborhoods, streets, and trails.
+            </p>
+            <p>
+              It's almost been two years and we're still at it! Why? Because we
+              love getting outside and having long conversations while stumbling
+              upon local gems like eateries, scenic spots, and farmers markets.
+            </p>
+            <p>
+              Check out our journey, and maybe find inspiration to explore your
+              own surroundings. Whether you’re a longtime resident or a visitor,
+              these walks reveal a side of the city that’s off the beaten path!
+            </p>
+            <p>Click on this card to reveal some stats.</p>
+          </div>
+          <!-- Page 2 Content -->
+          <div id="about-page-2" style="display: none">
+            <div class="flourish-embed" data-src="story/2625322" />
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
     <script src="js/config.js"></script>
     <script src="js/app.js"></script>
     <script src="https://public.flourish.studio/resources/embed.js"></script>
-</body>
+  </body>
 </html>

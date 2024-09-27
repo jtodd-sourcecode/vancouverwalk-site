@@ -44,7 +44,7 @@ window.addEventListener("click", (event) => {
 
 // Function to show the first page of the modal
 function showModalFirstPage() {
-  modal.style.display = "flex"; // Use flex to center content
+  modal.classList.add("show"); // Use class to display the modal
   aboutPage1.style.display = "block";
   aboutPage2.style.display = "none";
   document.body.classList.add("modal-open");
@@ -52,7 +52,7 @@ function showModalFirstPage() {
 
 // Function to close the modal
 function closeModal() {
-  modal.style.display = "none";
+  modal.classList.remove("show"); // Use class to hide the modal
   document.body.classList.remove("modal-open");
 }
 
