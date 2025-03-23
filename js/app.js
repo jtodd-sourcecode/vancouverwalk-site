@@ -6,7 +6,7 @@ const map = new mapboxgl.Map({
   container: "map", // HTML element ID for the map
   style: "mapbox://styles/mapbox/outdoors-v12", // Map style URL
   center: [-122.9805, 49.2488], // Initial map center [longitude, latitude]
-  zoom: 10, // Initial zoom level
+  zoom: 9, // Initial zoom level
   trackUserLocation: false, // Disable geolocation tracking
   attributionControl: false,
 });
