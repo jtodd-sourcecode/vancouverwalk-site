@@ -1,0 +1,7 @@
+gpxpy
+geojson
+gitpython
+
+[dev]
+ruff
+mypy

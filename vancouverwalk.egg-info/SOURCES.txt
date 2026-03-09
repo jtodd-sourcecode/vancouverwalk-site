@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+src/vancouverwalk.egg-info/PKG-INFO
+src/vancouverwalk.egg-info/SOURCES.txt
+src/vancouverwalk.egg-info/dependency_links.txt
+src/vancouverwalk.egg-info/requires.txt
+src/vancouverwalk.egg-info/top_level.txt
